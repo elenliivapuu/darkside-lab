@@ -1,109 +1,248 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #111;
-    background-image: url("https://sparklearmor.com/wp-content/uploads/2021/12/dangers-of-rust.jpg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    color: #fff;
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .services-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .services-image,
+    .details {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1em;
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(88, 67, 67, 0.212);
+    color: white;
+    margin: 0;
 }
 
 header {
     background-color: #000;
-    padding: 1em 0;
+    padding: 0.5em 0.5em;
     text-align: center;
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-header h1 {
-    color: #FFD700; 
-    margin: 0;
+.container {
+    width: 90%;
+    margin: auto 0;
 }
 
 nav {
-    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000;
 }
 
-nav a {
-    color: #FFD700; 
-    margin: 0 1em;
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container a {
     text-decoration: none;
-    font-weight: bold;
+    display: inline-block;
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
+ header img {
+    width: 80px;
+    margin-right: 15px;
+    border-radius: 10px;
+ }
+
+ header h1 {
+     color: yellow;
+     font-size: 24px;
+ }
+
+ ul.nav-links {
+     list-style: none;
+     display: flex;
+     gap: 20px;
+ }
+
+ ul.nav-links li a {
+     text-decoration: none;
+     color: white;
+     font-size: 16px;
+     padding: 10px, 15px;
+     transition: background-color 0.1s, color 0.1s;
+ }
+
+ ul.nav-links li a:hover {
+     background-color: green;
+     color: yellow;
+     border-radius: 5px;
+ }
 
 .hero-section {
-    background: url('../images/hero.jpg') no-repeat center center;
+    background-image: url('../img/hero-img.jpg');
+    background-position: center center;
     background-size: cover;
-    padding: 6em 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     text-align: center;
-    color: #fff;
+    color: white;
+    padding: 2em 1em;
+    opacity: 0.75;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-section h2 {
-    font-size: 2.5em;
+    font-size: 3em;
     margin-bottom: 0.5em;
+    margin-top: -80px;
 }
 
 .hero-section p {
-    font-size: 1.2em;
+    font-size: 1.5em;
     margin-bottom: 1em;
 }
 
-.btn {
-    background-color: #FFD700; 
-    color: #000;
+.hero-button {
+    background-color: yellow;
+    color: black;
     padding: 0.5em 1em;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    text-transform: uppercase;
 }
 
-.btn:hover {
-    background-color: #e6b800;
+.hero-button:hover{
+    background-color: #000;
+    color: #fff;
 }
 
-.dark-section {
-    background-color: #222;
-    padding: 4em 0;
+.services-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    min-height: 350px;
 }
 
-h2 {
-    color: #FFD700; /* Bright yellow color */
-    margin-bottom: 0.5em;
+.services-image {
+    flex: 1;
+    max-width: 45%;
+}
+
+.services-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.details {
+    flex: 1;
+    max-width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
 }
 
-ul {
+.details h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.details ul {
     list-style-type: none;
-    padding: 0;
+    padding-left: 0;
     margin: 0;
 }
 
-li {
-    background: #333;
-    margin-bottom: 1em;
-    padding: 1em;
-    border-left: 5px solid #FFD700;
+.details li {
+    margin-top: 10px;
+    font-size: 18px;
 }
 
 footer {
     background-color: #000;
-    color: #FFD700;
-    padding: 1em 0;
+    color: #fff;
+    text-align: top;
+    padding: 20px;
+}
+
+footer h2 {
+    color: yellow;
     text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+}
+
+footer a {
+    color: yellow;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Price List Section */
+.pricelist-section {
+    padding: 40px 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+.pricelist-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: yellow;
+}
+
+.price-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 1.2em;
+}
+
+.price-table th, .price-table td {
+    padding: 15px;
+    border: 1px solid #555;
+}
+
+.price-table th {
+    background-color: #444;
+    color: #fff;
+}
+
+.price-table td {
+    background-color: #222;
+    color: #fff;
+}
+
+.price-table tbody tr:hover {
+    background-color: #555;
 }
