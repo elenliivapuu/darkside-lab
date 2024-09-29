@@ -16,7 +16,7 @@ header {
 
 .container {
     width: 90%;
-    margin: auto 0;
+    margin: auto;
 }
 
 nav {
@@ -37,7 +37,7 @@ nav {
 }
 
  header img {
-    width: 80px;
+    width: 60px;
     margin-right: 15px;
     border-radius: 10px;
  }
@@ -50,32 +50,39 @@ nav {
  main h2 {
     padding: 1em 1em;
     text-align: center;
-    color: #444;
-    
+    color: #444;  
+ }
+
+ main h2.title {
+     color: white;
+ }
+
+ ul {
+    padding-inline-start: 0;
  }
 
  ul.nav-links {
      list-style: none;
      display: flex;
-     gap: 20px;
+     /* gap: 20px;s */
  }
 
  ul.nav-links li a {
      text-decoration: none;
      color: white;
-     font-size: 16px;
-     padding: 10px, 15px;
+     font-size: 18px;
+     padding: 10px 12px;
      transition: background-color 0.1s, color 0.1s;
  }
 
  ul.nav-links li a:hover {
-     background-color: green;
-     color: yellow;
+     background-color: gray;
+     /* color: yellow; */
      border-radius: 5px;
  }
 
 .hero-section {
-    background-image: url('../img/hero-img.jpg');
+    background-image: url('../img/hero-img-dark.jpg');
     background-position: center center;
     background-size: cover;
     height: 100vh;
@@ -86,7 +93,7 @@ nav {
     text-align: center;
     color: white;
     padding: 2em 1em;
-    opacity: 0.75;
+    opacity: 1.0;
 }
 
 .hero-content {
@@ -105,7 +112,7 @@ nav {
     margin-bottom: 1em;
 }
 
-.hero-button {
+.hero-button, .hero-link-button {
     background-color: yellow;
     color: black;
     padding: 0.5em 1em;
@@ -118,37 +125,33 @@ nav {
     text-transform: uppercase;
 }
 
-.hero-button:hover{
-    background-color: #000;
+.hero-link-button:hover{
+    background-color: black;
     color: #fff;
 }
 
 .services-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    min-height: 350px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    column-gap: 1em;
 }
 
 .services-image {
-    flex: 1;
-    max-width: 45%;
+    display: block;
+    background-image: url('../img/mis_eristab.jpg');
+    background-position: center center;
+    background-size: cover;
 }
 
 .services-image img {
+    object-fit: cover;
     max-width: 100%;
-    height: auto;
 }
 
 .details {
-    flex: 1;
-    max-width: 45%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+    max-width: 60%;
+    margin: auto;
+    color: rgb(0,0,0);
 }
 
 .details h2 {
@@ -163,7 +166,8 @@ nav {
 }
 
 .details li {
-    margin-top: 10px;
+    margin-top: 2em;
+    margin-bottom: 2em;
     font-size: 18px;
 }
 
@@ -252,19 +256,95 @@ footer a:hover {
     cursor: pointer;
 }
 
+.contact-section {
+    padding: 40px 20px;
+    background-color: #222;
+    color: white;
+    text-align: center;
+}
 
+.contact-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    color: yellow;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+/* Contact Form */
+.contact-form {
+    flex: 1;
+    max-width: 500px;
+    width: 100%;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form label {
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    color: #000;
+}
+
+.contact-form button {
+    padding: 15px;
+    background-color: yellow;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contact-form button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.contact-map {
+    flex: 1;
+    max-width: 500px;
+    width: 100%;
+}
 
 
 @media (max-width: 768px) {
+    .logo-container {
+        scale: 0.8;
+        margin-bottom: -10px;
+    }
     nav {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
+    ul.nav-links li a {
+        font-size: 16px;
+    }
+
     .services-section {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
+        grid-template-columns: 0% 100%;
+        column-gap: 0;
     }
     .services-image,
     .details {
@@ -275,5 +355,14 @@ footer a:hover {
 
     .main-grid {
         grid-template-columns: 1fr 1fr;
+    }
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-form,
+    .contact-map {
+        max-width: 100%;
     }
 }
