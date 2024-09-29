@@ -1,22 +1,3 @@
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    .services-section {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-    .services-image,
-    .details {
-        max-width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     background-color: rgba(88, 67, 67, 0.212);
@@ -64,6 +45,13 @@ nav {
  header h1 {
      color: yellow;
      font-size: 24px;
+ }
+
+ main h2 {
+    padding: 1em 1em;
+    text-align: center;
+    color: #444;
+    
  }
 
  ul.nav-links {
@@ -245,4 +233,47 @@ footer a:hover {
 
 .price-table tbody tr:hover {
     background-color: #555;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 2em;
+    row-gap: 2em;
+    padding: 2em;
+}
+
+.main-grid div img {
+    object-fit: contain;
+    width: 100%;
+}
+
+.main-grid div img:hover {
+    cursor: pointer;
+}
+
+
+
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .services-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    .services-image,
+    .details {
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .main-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
