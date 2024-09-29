@@ -1,7 +1,6 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: rgba(88, 67, 67, 0.212);
-    color: white;
     margin: 0;
 }
 
@@ -169,6 +168,14 @@ nav {
     margin-top: 2em;
     margin-bottom: 2em;
     font-size: 18px;
+}
+
+.two-grid {
+    display: grid;
+    padding: 1em 3em 3em 3em;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1em;
+    row-gap: 1em;
 }
 
 footer {
