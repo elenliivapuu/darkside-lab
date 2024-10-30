@@ -1,35 +1,46 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
+const Booking = require('./models/Booking');
 const app = express();
-const port = process.env.port || 3000;
+const PORT = process.env.port || 3000;
 
 // Serve static files from the root folder
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, 'dist')));
 
-// Route for root index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+mongoose.connect('mongodb://127.0.0.1:27017/bookings', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
+
+
+
+app.get('/api/bookings', async (req, res) => {
+    try {
+      const bookings = await Booking.find();
+
+      // TODO mongoose filter VS filter here
+
+      res.json(bookings);
+    } catch (error) {
+      res.status(500).json({ error: 'Error fetching bookings' });
+    }
+  });
+
+
+app.get('/api/hello', async (req, res) => {
+    res.send('hello :-) im bepis inside server ...trapped with penguins')
 });
 
-// Route for broneeri folder
-app.get('/broneeri', (req, res) => {
-    res.sendFile(path.join(__dirname, 'broneeri', 'index.html'));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
-// Root for galerii folder
-app.get('/galerii', (req, res) => {
-    res.sendFile(path.join(__dirname, 'galerii', 'index.html'));
-});
-
-// Root for hinnakiri folder
-app.get('/hinnakiri', (req, res) => {
-    res.sendFile(path.join(__dirname, 'hinnakiri', 'index.html'));
-});
-
-// Root for kontakt folder
-app.get('/kontakt', (req, res) => {
-    res.sendFile(path.join(__dirname, 'kontakt', 'index.html'));
-});
 
 // Start the server
-app.listen(port);
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});

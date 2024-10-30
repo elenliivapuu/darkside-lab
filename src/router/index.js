@@ -28,6 +28,11 @@ const router = createRouter({
       path: '/broneeri',
       name: 'Broneeri',
       component: () => import('../views/BookView.vue')
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('../views/AdminView.vue')
     }
   ]
 })

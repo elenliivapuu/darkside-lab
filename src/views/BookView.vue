@@ -10,15 +10,21 @@
                     <CalendarView
                         :show-date="showDate"
                         :items="events"
+                        :startingDayOfWeek = 1
                         @click-date="onDayClick"
                         class="theme-default">
-                       <CalendarViewHeader @input="setShowDate" />
+                        <template #header="{ headerProps }">
+                            <div class="cv-header">
+                            <nav class="cv-header-nav">
+                                <button class="previousPeriod" @click="setShowDate(headerProps.previousPeriod)">&lt;</button>
+                            <button class="nextPeriod" @click="setShowDate(headerProps.nextPeriod)">&gt;</button>
+                            <button class="currentPeriod" @click="setShowDate(headerProps.currentPeriod)">Today</button>
+                            </nav>
+                            <p class="periodLabel">{{ headerProps.monthNames[headerProps.periodStart.getMonth()] }}</p>
+                            </div>
+                       </template>
                     </CalendarView>
                 </div>
-
-                <span>Month</span>
-                <button>&lt;</button>
-                <button>&gt;</button>
 
                 <div v-if="showPopup" class="popup">
                     <div class="popup-content">
@@ -63,10 +69,10 @@
 </template>
 
 <script>
-	import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
+    import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
+    import CalendarHeader from "../components/CalendarHeader.vue"
 
-    import "../../node_modules/vue-simple-calendar/dist/style.css"
-    import "../../node_modules/vue-simple-calendar/dist/css/default.css"
+    import "../assets/calendar.css"
 
 
 	export default {
@@ -75,23 +81,13 @@
                 showDate: new Date(),
                 selectedDate: null,
                 showPopup: false,
-                events: [
-                    {
-                        title: 'Broneeritud', 
-                        startDate: '2024-10-26', 
-                        endDate: '2024-10-26'
-                    },
-                    {
-                        title: 'Broneeritud',
-                        startDate: '2024-10-30',
-                        endDate: '2024-10-30'
-                    }
-                ]
+                events: []
             }
 		},
 		components: {
 			CalendarView,
-			CalendarViewHeader,
+            CalendarViewHeader,
+            CalendarHeader
 		},
 		methods: {
 			setShowDate(d) {
@@ -103,8 +99,21 @@
             },
             closePopup() {
                 this.showPopup = false; 
+            },
+            async loadBookings() {
+                try {
+                    const response = await fetch('/api/bookings');
+                    if (!response.ok) throw new Error('Failed to fetch bookings');
+                    const data = await response.json();
+                    this.events = data;
+                } catch (error) {
+                    console.error('Error loading bookings:', error);
+                }
             }
-		}
+        },
+        mounted() {
+            this.loadBookings();
+        }
 	}
 </script>
 
