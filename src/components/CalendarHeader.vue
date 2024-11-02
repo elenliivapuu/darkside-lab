@@ -16,8 +16,7 @@ export default {
 <style scoped>
 .custom-calendar-header {
   background-color: #fffff0;
-  padding: 1rem;
-  font-family: avenir;
+  padding: 0.5rem;
   border: 1px solid #e0e0e0;
 }
 </style>

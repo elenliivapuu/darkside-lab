@@ -8,6 +8,10 @@ const PORT = process.env.port || 3000;
 // Serve static files from the root folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// Body parser
+app.use(express.json());
+
+
 mongoose.connect('mongodb://127.0.0.1:27017/bookings', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -21,12 +25,52 @@ app.get('/api/bookings', async (req, res) => {
     try {
       const bookings = await Booking.find();
 
-      // TODO mongoose filter VS filter here
+      // TODO check if we are logged in as admin
+      if (req.query.adminKey == "YmVwaXNiZXN0") {
+        res.json(bookings);
+        return;
+      }
 
-      res.json(bookings);
+      // Not admin -- return only dates
+      const filteredBookings = bookings.map(item => ({ startDate: item.startDate }));
+      res.json(filteredBookings);
     } catch (error) {
       res.status(500).json({ error: 'Error fetching bookings' });
     }
+  });
+
+  app.post('/api/bookings', async (req, res) => {
+    console.log("Received new request with body: ", req.body);
+    const { name, phone, email, startDate, time } = req.body;
+
+    if (!name || !phone || !email || !startDate || !time) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    try {
+      const booking = new Booking({
+          name,
+          phone,
+          email,
+          startDate: new Date(startDate)
+      });
+
+      // check if entry with same date and time already exists!
+      const conflictBooking = await Booking.findOne({ 'startDate': booking.startDate });
+      if (conflictBooking != null) {
+        console.error("Conflicting booking: ", conflictBooking);
+        console.log("Returning 409 and exiting...");
+        res.status(409).json({ error: 'A booking with this date already exists!' }).end();
+      } else {
+        // Save to database
+        await booking.save();
+        res.status(201).json({ message: 'Booking saved successfully', booking: { startDate: booking.startDate } });
+      }
+
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to save booking' });
+  }
+
   });
 
 
