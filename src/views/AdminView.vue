@@ -37,12 +37,22 @@
             },
 
             async deleteBooking(eid) {
-                console.log(eid)
-                // fetch DELETE? to apj bookings
-                // request: id
+                const response = await fetch('/api/bookings?adminKey=YmVwaXNiZXN0', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            bookingId: eid
+                        })
+                    });
 
-                // wait for OK response
-                // bad response if ID does not exist etc
+                if (!response.ok) 
+                    throw new Error('Failed to delete booking', eid);
+
+                console.log(response.json())
+
+                this.loadBookings();
             }
         },
         mounted() {

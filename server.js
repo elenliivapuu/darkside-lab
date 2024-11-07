@@ -39,40 +39,56 @@ app.get('/api/bookings', async (req, res) => {
     }
   });
 
-  app.post('/api/bookings', async (req, res) => {
-    console.log("Received new request with body: ", req.body);
-    const { name, phone, email, startDate, time } = req.body;
+app.post('/api/bookings', async (req, res) => {
+  console.log("Received new request with body: ", req.body);
+  const { name, phone, email, startDate, time } = req.body;
 
-    if (!name || !phone || !email || !startDate || !time) {
-        return res.status(400).json({ error: 'All fields are required' });
-    }
-
-    try {
-      const booking = new Booking({
-          name,
-          phone,
-          email,
-          startDate: new Date(startDate)
-      });
-
-      // check if entry with same date and time already exists!
-      const conflictBooking = await Booking.findOne({ 'startDate': booking.startDate });
-      if (conflictBooking != null) {
-        console.error("Conflicting booking: ", conflictBooking);
-        console.log("Returning 409 and exiting...");
-        res.status(409).json({ error: 'A booking with this date already exists!' }).end();
-      } else {
-        // Save to database
-        await booking.save();
-        res.status(201).json({ message: 'Booking saved successfully', booking: { startDate: booking.startDate } });
-      }
-
-  } catch (error) {
-      res.status(500).json({ error: 'Failed to save booking' });
+  if (!name || !phone || !email || !startDate || !time) {
+      return res.status(400).json({ error: 'All fields are required' });
   }
 
-  });
+  try {
+    const booking = new Booking({
+        name,
+        phone,
+        email,
+        startDate: new Date(startDate)
+    });
 
+    // check if entry with same date and time already exists!
+    const conflictBooking = await Booking.findOne({ 'startDate': booking.startDate });
+    if (conflictBooking != null) {
+      console.error("Conflicting booking: ", conflictBooking);
+      console.log("Returning 409 and exiting...");
+      res.status(409).json({ error: 'A booking with this date already exists!' }).end();
+    } else {
+      // Save to database
+      await booking.save();
+      res.status(201).json({ message: 'Booking saved successfully', booking: { startDate: booking.startDate } });
+    }
+
+} catch (error) {
+    res.status(500).json({ error: 'Failed to save booking' });
+}
+
+});
+
+app.delete('/api/bookings', async (req, res) => {
+  const { bookingId } = req.body;
+
+  try {
+    // TODO check if we are logged in as admin
+    if (req.query.adminKey == "YmVwaXNiZXN0") {
+      const result = await Booking.findByIdAndDelete(bookingId);
+      res.status(200).json({ message: 'Booking deleted successfully', booking: result });
+      return;
+    }
+    
+    res.status(401).json({ message: 'You must be logged in as an admin to access this endpoint' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching bookings' });
+  }
+});
 
 app.get('/api/hello', async (req, res) => {
     res.send('hello :-) im bepis inside server ...trapped with penguins')
