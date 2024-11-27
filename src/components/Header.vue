@@ -88,6 +88,11 @@ nav {
      /* color: yellow; */
      border-radius: 5px;
  }
+ .active {
+  background-color: yellow;
+  color: black!important;
+  border-radius: 5px;
+}
 
  @media (max-width: 768px) {
    .logo-container {

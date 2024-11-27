@@ -126,7 +126,7 @@ main strong {
     margin-bottom: 1em;
 }
 
-.hero-button, .hero-link-button {
+.hero-link-button {
     background-color: yellow;
     color: black;
     padding: 0.5em 1em;
