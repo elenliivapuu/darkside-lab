@@ -5,6 +5,9 @@ const Booking = require('./models/Booking');
 const app = express();
 const PORT = process.env.port || 3000;
 
+require('dotenv').config({path: __dirname + '/.env'})
+
+
 // Serve static files from the root folder
 app.use(express.static(path.join(__dirname, 'dist')));
 
@@ -12,10 +15,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.json());
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/bookings', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
