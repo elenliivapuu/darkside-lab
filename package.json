@@ -14,9 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aos": "^2.3.4",
     "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
     "express": "^4.21.0",
     "mongoose": "^8.7.3",
+    "swiper": "^11.1.15",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "vue-simple-calendar": "^7.1.0"
