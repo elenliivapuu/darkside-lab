@@ -194,7 +194,8 @@
                     const data = await response.json();
                     this.events = data;
                 } catch (error) {
-                    console.error('Error loading bookings:', error);
+                    console.error('Error loading bookings:')
+                    console.error(error);
                 }
             },
             async submitForm() {
