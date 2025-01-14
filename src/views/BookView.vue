@@ -11,6 +11,7 @@
                         :show-date="showDate"
                         :startingDayOfWeek = 1
                         :locale="et"
+                        :disablePast=true
                         @click-date="onDayClick"
                         class="theme-gcal locale-et">
                         <template #header="{ headerProps }" :locale="et">
@@ -23,14 +24,6 @@
                                 <p class="periodLabel" style="margin: 0; padding: 0; min-height: 0;">{{ headerProps.monthNames[headerProps.periodStart.getMonth()] }}</p>
                             </div>
                        </template>
-                       <!-- <template #day="{ day }">
-                            <div 
-                                class="cv-day"
-                                :class="{ 'clicked-day': isSelectedDay(day) }"
-                                @click="onDayClick(day)">
-                                {{ day.getDate() }}
-                            </div>
-                        </template> -->
                     </CalendarView>
                 </div>
             </div>
@@ -40,11 +33,7 @@
 
                 <div v-if="showSidebar" class="sidebar">
                     <div class="sidebar-content">
-                        <!-- <h4>{{ formattedSelectedDate }}</h4> -->
-                        <!--<h4>{{ selectedDate?.toLocaleDateString() || 'Select a date' }}</h4> -->
                         <h4>{{ formattedSelectedDate }}</h4>
-                        <!-- <h4>{{ selectedDate ? selectedDate.toLocaleDateString() : 'Select a date' }}</h4> -->
-
                         <select id="timeSlot" v-model="selectedTime" @change="emitSelectedTime" v-if="bookedHours.length>0">
                             <option value="" disabled>Kellaaeg</option>
 
@@ -54,7 +43,7 @@
                             
                         </select>
                         <div v-else>
-                            <p>Vabad ajad puuduvad selleks kuupaevaks!</p>
+                            <p>Vabad ajad puuduvad selleks kuupäevaks!</p>
                         </div>
 
                         <br><br>
@@ -71,13 +60,13 @@
                 <h3>Sisesta andmed:</h3>
                 <form @submit.prevent="submitForm" method="post" class="contact-form">
                     <label for="name">Nimi:</label>   
-                    <input type="text" id="name" v-model="formData.name" required>
+                    <input type="text" id="name" v-model="formData.name" placeholder="Nimi" required>
 
                     <label for="phone">Telefon:</label>  
-                    <input type="text" id="phone" v-model="formData.phone" required>
+                    <input type="text" id="phone" v-model="formData.phone" placeholder="Telefon" required>
 
                     <label for="email">E-post:</label>    
-                    <input type="email" id="email" v-model="formData.email" required>
+                    <input type="email" id="email" v-model="formData.email" placeholder="E-mail" required>
                     <br>
                     <button type="submit" id="confirm" :disabled="!isFormValid">Broneeri</button>
                 </form>
@@ -219,13 +208,13 @@
                         response.json().then(res => {
                             this.errorMsg = "Failed to save booking: " + res.error;
                         });
-                        throw new Error('Failed to save booking');
+                        throw new Error('Broneeringu salvestamine ebaõnnestus.');
                     }
                     
                     const result = await response.json();
                     console.log("Booking saved:", result);
 
-                    this.successMsg = "Booking saved successfully!";
+                    this.successMsg = "Broneering on edukalt salvestatud!";
                     this.errorMsg = "";
 
                     // Reset form after submission
@@ -244,8 +233,6 @@
             this.loadBookings();
         }
     };
-    ///////////////////////////////////////////////////////////////////
-    /////////
 </script>
 
 <style>
@@ -288,10 +275,6 @@ main {
     
 }
 
-/* #calendar cv-wrapper locale-et {
-    
-} */
-
 /* Sidebar styling */
 .sidebar {
     background-color: #333;
@@ -299,7 +282,7 @@ main {
 }
 
 .sidebar-content h4 {
-    color: #ffdd00;
+    color: yellow;
 }
 
 .sidebar-content ul {
@@ -321,7 +304,7 @@ select {
 }
 
 select:focus {
-  border-color: #ffdd00;
+  border-color: yellow;
   outline: none;
   box-shadow: 0 0 5px rgba(255, 221, 0, 0.5);
 }
@@ -379,7 +362,7 @@ select:focus {
 }
 
 #calendar .clicked-day {
-    background-color: #ffdd00 !important; 
+    background-color: yellow !important; 
     color: #333 !important; 
 }
 
@@ -442,6 +425,12 @@ select:focus {
 .contact-form button:hover {
     background-color: #000;
     color: #fff;
+}
+
+@media (max-width: 768px) {
+    .two-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 </style>

@@ -5,12 +5,11 @@
 
             <section class="main-grid">
                 <div><img src="../assets/img/hero-img.jpg" alt=""></div>
-                <div><img src="../assets/img/hero-img.jpg" alt=""></div>
-                <div><img src="../assets/img/hero-img.jpg" alt=""></div>
-                <div><img src="../assets/img/hero-img.jpg" alt=""></div>
-                <div><img src="../assets/img/hero-img.jpg" alt=""></div>
-                <div><img src="../assets/img/hero-img.jpg" alt=""></div>
-                <div><img src="../assets/img/hero-img.jpg" alt=""></div>
+                <div><img src="../assets/img/gallery-img1.jpg" alt=""></div>
+                <div><img src="../assets/img/gallery-img2.jpg" alt=""></div>
+                <div><img src="../assets/img/gallery-img3.jpg" alt=""></div>
+                <div><img src="../assets/img/gallery-img4.jpg" alt=""></div>
+                <div><img src="../assets/img/hero-img2.jpg" alt=""></div>
             </section>
         </div>
 

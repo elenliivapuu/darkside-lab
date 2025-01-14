@@ -5,15 +5,15 @@
                 <h2>Võta meiega ühendust</h2>
                 <div class="contact-container">
                     <div class="contact-form">
-                        <form action="#" method="post">
+                        <form action="https://formspree.io/f/mkggpdlg" method="post">
                             <label for="name">Nimi:</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" placeholder="Nimi" required>
 
                             <label for="email">E-post:</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" placeholder="E-mail" required>
 
                             <label for="message">Sõnum:</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Sõnum" required></textarea>
 
                             <button type="submit">Saada</button>
                         </form>
@@ -106,8 +106,7 @@
 
 @media (max-width: 768px) {
     .contact-container {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
     }
 
     .contact-form,

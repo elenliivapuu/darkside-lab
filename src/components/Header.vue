@@ -72,7 +72,6 @@ nav {
  ul.nav-links {
      list-style: none;
      display: flex;
-     /* gap: 20px;s */
  }
 
  ul.nav-links li a {
@@ -85,7 +84,6 @@ nav {
 
  ul.nav-links li a:hover {
      background-color: gray;
-     /* color: yellow; */
      border-radius: 5px;
  }
  .active {

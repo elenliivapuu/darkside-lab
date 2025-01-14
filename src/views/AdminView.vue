@@ -1,20 +1,22 @@
 <template>
-    <div class="container" style="color: white;">
-        <p>Admin</p>
-        <p>All bookings:</p>
-        <ul>
-            <li v-for="event in events" :key="event._id" style="line-height: 1.0;">
-                <p>Date: {{ event.startDate }}</p>
-                <p>Name: {{ event.name }}</p>
-                <p>Phone: {{ event.phone }}</p>
-                <p>Email: {{ event.email }}</p>
-                <p>Comment: {{ event.comment }}</p>
-                <p>Registered: {{ event.createdAt }}</p>
-                <button @click="deleteBooking(event._id)">Delete Booking</button>
-                <hr>
-            </li>
-        </ul>
-    </div>
+    <main>
+        <div class="container" style="color: white;">
+            <p>Admin</p>
+            <p>All bookings:</p>
+            <ul>
+                <li v-for="event in events" :key="event._id" style="line-height: 1.0;">
+                    <p>Date: {{ event.startDate }}</p>
+                    <p>Name: {{ event.name }}</p>
+                    <p>Phone: {{ event.phone }}</p>
+                    <p>Email: {{ event.email }}</p>
+                    <p>Comment: {{ event.comment }}</p>
+                    <p>Registered: {{ event.createdAt }}</p>
+                    <button @click="deleteBooking(event._id)">Delete Booking</button>
+                    <hr>
+                </li>
+            </ul>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -60,3 +62,8 @@
         }
 	}
 </script>
+<style scoped>
+    .container {
+        min-height: 80vh;
+    }
+</style>

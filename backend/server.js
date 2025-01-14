@@ -25,7 +25,7 @@ app.get('/api/bookings', async (req, res) => {
     try {
       const bookings = await Booking.find();
 
-      // TODO check if we are logged in as admin
+      // TODO check if we are logged in as admin, NB! implement proper authentication later
       if (req.query.adminKey == "YmVwaXNiZXN0") {
         res.json(bookings);
         return;
@@ -77,6 +77,7 @@ app.delete('/api/bookings', async (req, res) => {
   const { bookingId } = req.body;
 
   try {
+    // There is no secure authentication implemented, so admin can access this endpoint only when using this admin key below for now
     // TODO check if we are logged in as admin
     if (req.query.adminKey == "YmVwaXNiZXN0") {
       const result = await Booking.findByIdAndDelete(bookingId);
@@ -88,10 +89,6 @@ app.delete('/api/bookings', async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: 'Error fetching bookings' });
   }
-});
-
-app.get('/api/hello', async (req, res) => {
-    res.send('hello :-) im bepis inside server ...trapped with penguins')
 });
 
 
