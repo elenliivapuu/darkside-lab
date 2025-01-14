@@ -1,4 +1,7 @@
-# darkside-lab
+# Darkside-Lab
+A detailing service platform using Node.js backend and Vue.js frontend.
+
+In this project server logic is in the `backend` folder and the user interface in implemented in the `src` folder.
 
 ## Installing
 
@@ -8,11 +11,11 @@ Install packages with `npm install`.
 
 ## Running
 
-Start a database:
+Start the MongoDB database:
 `npm run db`
 
-Build frontend:
+Build the Vue.js frontend:
 `npm run build`
 
-Start server:
+Start the Node.js server:
 `npm run server`
