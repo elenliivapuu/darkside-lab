@@ -22,4 +22,4 @@ Start the Node.js server:
 
 ## Admin view
 
-To access the unfinished admin page, navigate to `/admin`, but include the following in the URL: `?adminKey=YmVwaXNiZXN0` to simulate a login token. Otherwise, no data will be loaded.
+To access the unfinished admin page, navigate to `/admin`.
