@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Booking = require('./models/Booking');
 const app = express();
-const PORT = process.env.port || 3000;
+const PORT = process.env.port || 80;
 
 require('dotenv').config({path: __dirname + '/.env'})
 
