@@ -33,9 +33,38 @@ const router = createRouter({
     {
       path: '/admin',
       name: 'Admin',
-      component: () => import('../views/AdminView.vue')
+      component: () => import('../views/AdminView.vue'),
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('../views/LoginView.vue')
+    },
+    {
+      path: '/register', // disable this endpoint when not in use
+      name: 'Register',
+      component: () => import('../views/RegisterView.vue')
     }
   ]
+})
+
+router.beforeEach(async (to, from, next) => {
+  if (to.meta.requiresAuth || to.name === 'Login') {
+    const res = await fetch('http://127.0.0.1:5000/api/check', {
+      method: 'GET',
+      credentials: 'include',
+    })
+    const data = await res.json();
+    const authd = data.authenticated;
+
+    if (!authd && to.name !== 'Login') 
+      return next('/login')
+
+    if (authd && to.name === 'Login')
+      return next('/admin')
+  }
+  next()
 })
 
 export default router

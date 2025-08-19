@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Booking = require('./models/Booking');
 const app = express();
-const PORT = process.env.port || 80;
+const PORT = process.env.port || 3000;
 
 require('dotenv').config({path: __dirname + '/.env'})
 
@@ -15,7 +15,8 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.json());
 
 
-mongoose.connect(process.env.MONGODB_URI)
+// ???
+mongoose.connect('mongodb://127.0.0.1:27017/darkside') 
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
 
@@ -26,7 +27,7 @@ app.get('/api/bookings', async (req, res) => {
       const bookings = await Booking.find();
 
       // TODO check if we are logged in as admin, NB! implement proper authentication later
-      if (req.query.adminKey == "YmVwaXNiZXN0") {
+      if (req.isAuthenticated()) {
         res.json(bookings);
         return;
       }
@@ -79,7 +80,7 @@ app.delete('/api/bookings', async (req, res) => {
   try {
     // There is no secure authentication implemented, so admin can access this endpoint only when using this admin key below for now
     // TODO check if we are logged in as admin
-    if (req.query.adminKey == "YmVwaXNiZXN0") {
+    if (req.isAuthenticated()) {
       const result = await Booking.findByIdAndDelete(bookingId);
       res.status(200).json({ message: 'Booking deleted successfully', booking: result });
       return;

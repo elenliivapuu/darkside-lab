@@ -11,6 +11,8 @@ Install packages with `npm install`.
 
 ## Running
 
+TODO update + intructions + overview + setup guide + future cosndierations
+
 Start the MongoDB database:
 `npm run db`
 
@@ -22,4 +24,4 @@ Start the Node.js server:
 
 ## Admin view
 
-To access the unfinished admin page, navigate to `/admin`, but include the following in the URL: `?adminKey=YmVwaXNiZXN0` to simulate a login token. Otherwise, no data will be loaded.
+To access the unfinished admin page, navigate to `/admin`, probably have to `/login` first or create admin account under `/register`

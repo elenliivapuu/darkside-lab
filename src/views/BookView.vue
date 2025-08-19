@@ -149,7 +149,7 @@
                     this.previousSelectedElement.parentNode.classList.remove("clicked-day");
                     this.previousSelectedElement.classList.remove("clicked-day");
                 }
-                console.log("Clicked date:", date);
+
                 this.selectedDate = date;
                 this.showSidebar = true;
 
@@ -165,9 +165,11 @@
                 this.bookedHours = [8, 10, 12, 14, 16];
 
                 // Get bookings for the selected date
+                // TODO: the following logic could be done in SQL instead!
+                // ie: make GET request here, provide datetime. Should be much nicer.
                 let dayBookings = this.events
-                    .filter(event => new Date(event.startDate).toDateString() === date.toDateString())
-                    .map(event => new Date(event.startDate).getUTCHours());
+                    .filter(event => new Date(event).toLocaleDateString() === date.toLocaleDateString())
+                    .map(event => new Date(event).getUTCHours());
 
                 this.bookedHours = this.bookedHours.filter(h => !dayBookings.includes(h));
             },
@@ -178,10 +180,14 @@
             
             async loadBookings() {
                 try {
-                    const response = await fetch('/api/bookings');
+                    const response = await fetch('http://127.0.0.1:5000/api/bookings/dates', {
+                        method: 'GET',
+                        credentials: 'include',
+                        body: null
+                    });
                     if (!response.ok) throw new Error('Failed to fetch bookings');
                     const data = await response.json();
-                    this.events = data;
+                    this.events = data.bookings;
                 } catch (error) {
                     console.error('Error loading bookings:')
                     console.error(error);
@@ -190,8 +196,9 @@
             async submitForm() {
                 try{
                     let cd = this.selectedDate;
-                    const response = await fetch('/api/bookings', {
+                    const response = await fetch('http://127.0.0.1:5000/api/bookings', {
                         method: 'POST',
+                        credentials: 'include',
                         headers: {
                             'Content-Type': 'application/json'
                         },

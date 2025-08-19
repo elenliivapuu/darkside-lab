@@ -25,3 +25,7 @@ yarn-error.log*
 *.sln
 *.sw*
 *.code-workspace
+
+__pycache__/
+.venv*/
+venv*/
