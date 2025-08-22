@@ -14,7 +14,7 @@
                         :disablePast=true
                         @click-date="onDayClick"
                         class="theme-gcal locale-et">
-                        <template #header="{ headerProps }" :locale="et">
+                        <template #header="{ headerProps }">
                             <div class="cv-header locale-et">
                                 <nav class="cv-header-nav">
                                     <button class="previousPeriod" @click="setShowDate(headerProps.previousPeriod)">&lt;</button>
@@ -242,7 +242,7 @@
     };
 </script>
 
-<style>
+<style scoped>
 main {
     background-color: #333;
 }

@@ -1,17 +1,18 @@
 <template>
     <main>
-        <div class="container" style="color: white;">
-            <p>Login</p>
+        <div class="login-container">
+            <h2 class="login-title">Logi sisse</h2>
         
             <form @submit.prevent="submitForm" method="post">
-                <input v-model.trim="formData.username" placeholder="Username" />
+                <input type="text" v-model.trim="formData.username" placeholder="Username" />
                 <input type="password" v-model.trim="formData.password" placeholder="Password" />
-                <div>
-                <input type="checkbox" id="remember_me" v-model="formData.remember_me" />
-                <label style="padding-left: 0.5rem" for="remember_me">Remember Me</label>
-                </div>
 
-                <button>Log In</button>
+                <label class="checkbox">
+                    <input type="checkbox" v-model="formData.remember_me" />
+                    Remember Me
+                </label>
+
+                <button type="submit" class="login-button">Log In</button>
             </form>
         </div>
     </main>
@@ -37,6 +38,8 @@ import router from '../router'
                     form.append('username', this.formData.username)
                     form.append('password', this.formData.password)
 
+                    // const response = await fetch('http://127.0.0.1:5000/api/login', {
+
                     const response = await fetch('http://127.0.0.1:5000/api/login', {
                         method: 'POST',
                         credentials: 'include',
@@ -55,8 +58,76 @@ import router from '../router'
         },
 	}
 </script>
+
 <style scoped>
-    .container {
-        min-height: 80vh;
-    }
+main {
+  min-height: 80vh;
+  background-color: #121212;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.login-container {
+  background: rgba(228, 228, 228, 0.226);
+  padding: 2em;
+  padding-right: 2.5em;
+  border-radius: 10px;
+  width: 320px;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.2);
+}
+
+.login-title {
+  font-size: 1.8em;
+  margin-bottom: 1em;
+  text-align: center;
+  color: yellow;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.6em;
+  margin-bottom: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #2a2a2a;
+  color: white;
+  font-size: 1em;
+}
+
+input::placeholder {
+  color: #bbb;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 0.95em;
+  margin-bottom: 1.5em;
+}
+
+.checkbox input {
+  margin-right: 0.5em;
+}
+
+ button {
+  background-color: yellow;
+  color: black;
+  font-weight: bold;
+  padding: 0.6em;
+  border: none;
+  width: 50%;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  margin-left: 0.4em;
+}
+
+.login-button:hover {
+  background-color: black;
+  color: white;
+}
 </style>

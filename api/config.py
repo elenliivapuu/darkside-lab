@@ -27,7 +27,6 @@ class Config:
     CORS_HEADERS = ['Content-Type','Authorization']
 
     MONGO_URI = os.environ.get("MONGO_URI")
-    SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
 class DevConfig(Config):

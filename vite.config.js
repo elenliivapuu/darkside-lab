@@ -8,10 +8,6 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
-  build: {
-    outDir: 'backend/dist',
-    emptyOutDir: true,
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
