@@ -10,7 +10,7 @@ A responsive full-stack web application for a professional car detailing company
 
 ---
 
-## In this project:
+## 🗂️Structure:
 - The **frontend** lives in the `src/` directory.
 - The **Flask backend** is in the `api/` folder.
 
@@ -19,9 +19,9 @@ A responsive full-stack web application for a professional car detailing company
 ## 📁 Features
 
 - 🧼 **Service Overview** – Information about car handwashing and related services
-- 📸 **Image Gallery** – Embedded Swiper-based image showcase
+- 📸 **Image Gallery** – Image gallery
 - 📆 **Booking Calendar** – Select date/time, enter contact info, submit booking
-- 🔐 **Admin Panel** – View and delete bookings, log out securely
+- 🔐 **Admin Panel** – View and delete bookings, login/logout
 - 📍 **Contact Page** – Integrated Google Maps + email form via Formspree
 
 ---
@@ -47,9 +47,25 @@ Install packages with `npm install`.
 Run the Vue.js frontend:
 `npm run dev`
 
-Start the Node.js server:
+Start the Flask server:
 `npm run server`
+
+---
 
 ## Login, register and Admin views
 
-To access the unfinished admin page, navigate to `/admin`, probably have to `/login` first or create admin account under `/register`
+To access Admin page and manage bookings navigate to `/admin`, probably have to `/login` first or create admin account under `/register`
+
+
+## 📨 Contact Form
+
+To enable the contact form:
+
+Sign up at https://formspree.io
+
+Replace the default form URL in ContactView.vue with your own Formspree endpoint.
+
+## Notes:
+
+You can change the base API URL in the `.env` file.  
+Booked times are stored in a `bookedHours` variable in `BookView.vue`—you can update it as needed.

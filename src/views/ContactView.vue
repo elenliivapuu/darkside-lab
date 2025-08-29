@@ -6,6 +6,7 @@
                 <div class="contact-container">
                     <!-- Contact form submitted via Formspree -->
                     <div class="contact-form">
+                        <!-- Put your formspree link here -->
                         <form action="https://formspree.io/f/mkggpdlg" method="post">
                             <label for="name">Nimi:</label>
                             <input type="text" id="name" name="name" placeholder="Nimi" required>

@@ -50,6 +50,7 @@
 
 <script>
 import router from '../router'
+import { baseUrl } from '../config';
 
 	export default {
 		data: function() {
@@ -61,7 +62,7 @@ import router from '../router'
             // Load all bookings from the backend
             async loadBookings() {
                 try {
-                    const response = await fetch('http://127.0.0.1:5000/api/bookings', {
+                    const response = await fetch(`${baseUrl}/api/bookings`, {
                         method: 'GET',
                         credentials: 'include',
                         body: null,
@@ -76,7 +77,7 @@ import router from '../router'
 
             // Delete booking by ID and reload list
             async deleteBooking(eid) {
-                const response = await fetch(`http://127.0.0.1:5000/api/bookings/${eid}`, {
+                const response = await fetch(`${baseUrl}/api/bookings/${eid}`, {
                         method: 'DELETE',
                         credentials: 'include',
                         headers: {
@@ -92,7 +93,7 @@ import router from '../router'
             },
             // Logout request + redirect to login
             async logOut() {
-                const res = await fetch(`http://127.0.0.1:5000/api/logout`, {
+                const res = await fetch(`${baseUrl}/api/logout`, {
                     method: 'GET',
                     credentials: 'include',
                 })

@@ -6,8 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "server": "source .venv/bin/activate ; cd api ; python -m flask run ; cd ..",
-    "preview": "vite preview",
-    "db": "mongod --dbpath /Users/elenliivapuu/data/db"
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",

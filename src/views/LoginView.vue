@@ -20,6 +20,7 @@
 
 <script>
 import router from '../router'
+import { baseUrl } from '../config';
 
 	export default {
 		data: function() {
@@ -38,9 +39,7 @@ import router from '../router'
                     form.append('username', this.formData.username)
                     form.append('password', this.formData.password)
 
-                    // const response = await fetch('http://127.0.0.1:5000/api/login', {
-
-                    const response = await fetch('http://127.0.0.1:5000/api/login', {
+                    const response = await fetch(`${baseUrl}/api/login`, {
                         method: 'POST',
                         credentials: 'include',
                         body: form

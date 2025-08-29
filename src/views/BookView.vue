@@ -83,6 +83,8 @@
 
 <script>
     import { CalendarView, CalendarViewHeader } from "vue-simple-calendar"
+    import { baseUrl } from '../config';
+    import { bookingHourSlots } from '../config';
 
     import "../../node_modules/vue-simple-calendar/dist/style.css"
     import "../../node_modules/vue-simple-calendar/dist/css/gcal.css"
@@ -175,10 +177,7 @@
                 }
                 this.previousSelectedElement = windowEvent.srcElement;
 
-                // Example list of available dates
-                //NB!!! PUT YOUR REAL AVAILABLE BOOKING HOURS
-
-                this.bookedHours = [8, 10, 12, 14, 16];
+                this.bookedHours = bookingHourSlots;
 
                 // Get bookings for the selected date
                 // TODO: the following logic could be done in SQL instead!
@@ -197,7 +196,7 @@
             // Load all bookings (used for filtering available hours)
             async loadBookings() {
                 try {
-                    const response = await fetch('http://127.0.0.1:5000/api/bookings/dates', {
+                    const response = await fetch(`${baseUrl}/api/bookings/dates`, {
                         method: 'GET',
                         credentials: 'include',
                         body: null
@@ -214,7 +213,7 @@
             async submitForm() {
                 try{
                     let cd = this.selectedDate;
-                    const response = await fetch('http://127.0.0.1:5000/api/bookings', {
+                    const response = await fetch(`${baseUrl}/api/bookings`, {
                         method: 'POST',
                         credentials: 'include',
                         headers: {

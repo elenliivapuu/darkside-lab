@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { baseUrl } from '../config';
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -51,7 +52,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   if (to.meta.requiresAuth || to.name === 'Login') {
-    const res = await fetch('http://127.0.0.1:5000/api/check', {
+    const res = await fetch(`${baseUrl}/api/check`, {
       method: 'GET',
       credentials: 'include',
     })
