@@ -32,9 +32,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
 .link-button {
-    color: yellow;
+    color: var(--color-yellow);
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
@@ -43,7 +44,7 @@
 }
 
 .link-button:hover{
-    color: #fff;
+    color: var(--color-white);
 }
 
 

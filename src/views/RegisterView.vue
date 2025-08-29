@@ -64,11 +64,11 @@
 <style scoped>
 main {
   min-height: 80vh;
-  background-color: #121212;
+  background-color: var(--color-dark-grey);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--color-white);
 }
 
 .register-container {
@@ -84,7 +84,7 @@ main {
   font-size: 1.8em;
   margin-bottom: 1em;
   text-align: center;
-  color: yellow;
+  color: var(--color-yellow);
 }
 
 input[type="text"],
@@ -95,8 +95,8 @@ input[type="password"] {
   margin-bottom: 1em;
   border: none;
   border-radius: 5px;
-  background-color: #2a2a2a;
-  color: white;
+  background-color: var(--color-dark-grey);
+  color: var(--color-white);
   font-size: 1em;
 }
 
@@ -110,8 +110,8 @@ button {
   margin-top: 1em;
   border: none;
   border-radius: 5px;
-  background-color: yellow;
-  color: black;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
   font-weight: bold;
   font-size: 1.1em;
   cursor: pointer;
@@ -119,8 +119,8 @@ button {
 }
 
 button:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 </style>
 

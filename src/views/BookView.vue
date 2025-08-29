@@ -3,9 +3,10 @@
         <h2 class="page-title">Broneeri</h2>
         
         <section class="two-grid container">
+            <!-- Calendar section -->
             <div class="calendar-parent">
                 <h3>Vali päev:</h3>
-
+                <!-- Calendar widget (vue-simple-calendar) -->
                 <div id="calendar" class="calendar">
                     <CalendarView
                         :show-date="showDate"
@@ -14,6 +15,7 @@
                         :disablePast=true
                         @click-date="onDayClick"
                         class="theme-gcal locale-et">
+                        <!-- Custom header slot -->
                         <template #header="{ headerProps }">
                             <div class="cv-header locale-et">
                                 <nav class="cv-header-nav">
@@ -21,6 +23,7 @@
                                     <button class="nextPeriod" @click="setShowDate(headerProps.nextPeriod)">&gt;</button>
                                     <button class="currentPeriod" @click="setTodayAsSelected">Täna</button>
                                 </nav>
+                                <!-- Display current month -->
                                 <p class="periodLabel" style="margin: 0; padding: 0; min-height: 0;">{{ headerProps.monthNames[headerProps.periodStart.getMonth()] }}</p>
                             </div>
                        </template>
@@ -28,33 +31,36 @@
                 </div>
             </div>
 
+            <!-- Sidebar: available time slots and status messages -->
             <div>
                 <h3>Vali kellaaeg:</h3>
 
                 <div v-if="showSidebar" class="sidebar">
                     <div class="sidebar-content">
                         <h4>{{ formattedSelectedDate }}</h4>
+                        <!-- Time slot selection -->
                         <select id="timeSlot" v-model="selectedTime" @change="emitSelectedTime" v-if="bookedHours.length>0">
                             <option value="" disabled>Kellaaeg</option>
 
                             <option v-for="time in bookedHours" :key="time" :value="time">
                                 {{ time }}:00
                             </option>
-                            
                         </select>
+                        <!-- No slots available -->
                         <div v-else>
                             <p>Vabad ajad puuduvad selleks kuupäevaks!</p>
                         </div>
-
                         <br><br>
                     </div>
                 </div>
                 
+                <!-- User feedback -->
                 <div v-if="successMsg" class="alert success">{{ successMsg }}</div>
                 <div v-if="errorMsg" class="alert error">{{ errorMsg }}</div>
-                
             </div>
         </section>
+
+        <!-- Booking form -->
         <section class="contact-container container">
             <div class="contact-form">
                 <h3>Sisesta andmed:</h3>
@@ -103,6 +109,7 @@
             };
         },
         computed: {
+            // Enable button only when all fields and time are selected
             isFormValid() {
                 return this.formData.name && this.formData.phone && this.formData.email && this.selectedTime;
             },
@@ -124,24 +131,30 @@
             CalendarViewHeader
 		},
 		methods: {
+            // Handle calendar navigation
 			setShowDate(d) {
+                if (!d)
+                    return;
+
                 this.showDate = d;
                 
                 if (d.toDateString() === new Date().toDateString()) {
                     this.setTodayAsSelected();
                 }
             },
+            // Highlight today's date
             setTodayAsSelected() {
                 // Clear previous selection
                 if (this.previousSelectedElement) {
                     this.previousSelectedElement.classList.remove("clicked-day");
                     this.previousSelectedElement = null;
                 }    
-                    // Set today as the selected date
+                // Set today as the selected date
                 this.selectedDate = new Date();
                 this.setShowDate(this.selectedDate);
                 this.showSidebar = true;
             },
+            // Select a calendar day and load available time slots
             onDayClick(date, calendarItems, windowEvent) {
                 this.selectedTime = "";
                 // Remove `clicked-day` class from previously selected element
@@ -153,6 +166,7 @@
                 this.selectedDate = date;
                 this.showSidebar = true;
 
+                // Highlight clicked day
                 var dayElement = windowEvent.srcElement;
                 if (dayElement.classList.contains("cv-day")) {
                     dayElement.classList.add("clicked-day");
@@ -162,6 +176,8 @@
                 this.previousSelectedElement = windowEvent.srcElement;
 
                 // Example list of available dates
+                //NB!!! PUT YOUR REAL AVAILABLE BOOKING HOURS
+
                 this.bookedHours = [8, 10, 12, 14, 16];
 
                 // Get bookings for the selected date
@@ -173,11 +189,12 @@
 
                 this.bookedHours = this.bookedHours.filter(h => !dayBookings.includes(h));
             },
-            //onItemClick(date) {},
+            // Update selected time
             emitSelectedTime(e) {
                 this.selectedDate.setHours(e.target.value);
             },
             
+            // Load all bookings (used for filtering available hours)
             async loadBookings() {
                 try {
                     const response = await fetch('http://127.0.0.1:5000/api/bookings/dates', {
@@ -193,6 +210,7 @@
                     console.error(error);
                 }
             },
+            // Submit booking to backend
             async submitForm() {
                 try{
                     let cd = this.selectedDate;
@@ -244,7 +262,7 @@
 
 <style scoped>
 main {
-    background-color: #333;
+    background-color: var(--color-dark-grey);
 }
 
 .two-grid {
@@ -252,7 +270,7 @@ main {
     grid-template-columns: 1fr 1fr;
     column-gap: 6em;
     row-gap: 1em;
-    color: white;
+    color: var(--color-white);
     padding-bottom: 2em;
 }
 .calendar-parent {
@@ -263,7 +281,7 @@ main {
 .calendar {
     display: flex;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--color-white);
     height: 400px;
     border-radius: 4px;
 }
@@ -278,18 +296,17 @@ main {
     margin: 10px; 
     padding: 4px; 
     min-height: 0;
-    /* locale: et; */
     
 }
 
 /* Sidebar styling */
 .sidebar {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
 }
 
 .sidebar-content h4 {
-    color: yellow;
+    color: var(--color-yellow);
 }
 
 .sidebar-content ul {
@@ -334,44 +351,6 @@ select:focus {
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
-.theme-gcal .cv-day-number {
-    margin: 0 auto; /*0 auto */
-    padding: 0.5em 0.5em
-}
-.theme-gcal .cv-day.today .cv-day-number{
-    background-color: gray;
-}
-#calendar .previousPeriod:hover, #calendar .nextPeriod:hover{
-    cursor: pointer;
-    background-color: #f0f0f0;
-    border-radius: 4px;
-}
-#calendar .currentPeriod:hover {
-    cursor: pointer;
-    background-color: #f0f0f0;
-}
-#calendar .currentPeriod:active {
-    background-color: gray;
-    transition: background-color 0.5s ease;
-}
-#calendar .cv-day {
-    cursor: pointer; /* Show pointer cursor on hover */
-    padding: 0.5em;
-    transition: background-color 0.3s ease;
-}
-
-#calendar .cv-day-number {
-    background-color: none;
-}
-
-#calendar .cv-day:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
-}
-
-#calendar .clicked-day {
-    background-color: yellow !important; 
-    color: #333 !important; 
-}
 
 .contact-container {
     display: flex;
@@ -396,13 +375,13 @@ select:focus {
     
 }
 .contact-form h3 {
-    color: #fff;
+    color: var(--color-white);
 }
 
 .contact-form label {
     text-align: left;
     margin-bottom: 3px;
-    color: white;
+    color: var(--color-white);
     font-weight: bold;
 }
 
@@ -413,14 +392,14 @@ select:focus {
     border: none;
     border-radius: 4px;
     font-size: 0.9em;
-    color: #000;
+    color: var(--color-black);
 }
 .contact-form button {
     padding: 15px;
     margin-top: 0.7em;
     margin-bottom: 0.7em;
-    background-color: yellow;
-    color: #000;
+    background-color: var(--color-yellow);
+    color: var(--color-black);
     border: none;
     border-radius: 4px;
     font-size: 1.2em;
@@ -430,8 +409,8 @@ select:focus {
 }
 
 .contact-form button:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-black);
+    color: var(--color-white);
 }
 
 @media (max-width: 768px) {
@@ -439,5 +418,4 @@ select:focus {
         grid-template-columns: 1fr;
     }
 }
-
 </style>

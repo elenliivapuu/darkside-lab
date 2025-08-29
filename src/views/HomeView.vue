@@ -9,19 +9,21 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 import { RouterLink } from 'vue-router';
 
+// Array of hero background images. ADD YOUR IMAGES FOR CAROUSEL HERE
 const heroBackgrounds = [
   new URL('../assets/img/swiper-hero-img-dark.jpg', import.meta.url).href,
   new URL('../assets/img/swiper-hero-img2.jpg', import.meta.url).href,
   new URL('../assets/img/swiper-gallery-img2.jpg', import.meta.url).href,
   new URL('../assets/img/swiper-gallery-img3.jpg', import.meta.url).href,
   new URL('../assets/img/swiper-gallery-img4.jpg', import.meta.url).href,
-  
+//   new URL('../assets/img/swiper-gallery-img4.jpg', import.meta.url).href,
 
 ];
 </script>
 
 <template>
     <main>
+        <!-- Hero section with background image carousel -->
         <section class="hero-section">
             <Swiper
                 :modules="[Navigation, Pagination, Autoplay]"
@@ -32,6 +34,7 @@ const heroBackgrounds = [
                 :navigation="true"
                 class="hero-carousel"
             >
+                <!-- Loop through background images -->
                 <SwiperSlide
                     v-for="(bg, index) in heroBackgrounds"
                     :key="index"
@@ -41,6 +44,7 @@ const heroBackgrounds = [
                 </SwiperSlide>
             </Swiper>
 
+            <!-- Hero headline and call to action -->
             <div class="hero-content">
                 <h2 class="big-title">Otsite oma autole parimat võimalikku puhastust?</h2>
                 <p data-aos="fade-right" data-aos-duration="1500">Siis olete õiges kohas! Darkside-Lab pakub professionaalset auto käsipesu teenust, mis tagab teie
@@ -48,10 +52,9 @@ const heroBackgrounds = [
                 <br>
                 <RouterLink class="hero-link-button" to="/broneeri">Broneeri</RouterLink>
             </div>
-                
-            
         </section>
 
+        <!-- What makes us different section -->
         <section class="services-section" data-aos="fade-up">
             <div class="container">
                 <h2 class="eristab">Mis meid eristab?</h2>
@@ -59,7 +62,7 @@ const heroBackgrounds = [
                     <div class="services-image">
                         <!-- <img src="../img/mis_eristab.jpg" alt=""> -->
                     </div>
-
+                    <!-- Selling points on right -->
                     <div class="services-points">
                         <div data-aos="fade-right" data-aos-delay="200">
                             <h4><strong>Põhjalik puhastus</strong></h4>
@@ -93,6 +96,7 @@ const heroBackgrounds = [
             </div>
         </section>
 
+        <!-- Handwash vs machine wash benefits section -->
         <section class="handwash-section">
             <div class="container">
                 <h2 data-aos="fade-down">Miks valida auto käsipesu?</h2>
@@ -118,21 +122,21 @@ const heroBackgrounds = [
         </section>
     </main>
 </template>
-
 <style scoped>
 main strong {
-    color: yellow;
+    color: var(--color-yellow);
 }
 
  .title-white {
-    color: rgb(230, 230, 230); 
+    color: var(--color-soft-white); 
  }
+
  .hero-section {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: var(--color-white);
     opacity: 1.0;
     position: relative; 
     min-height: 50vh;
@@ -161,7 +165,7 @@ main strong {
 .hero-content {
     
     text-align: center;
-    color: white;
+    color: var(--color-white);
     z-index: 2;
     max-width: 1000px;
     margin-top: 20px;
@@ -179,8 +183,7 @@ main strong {
 
 .hero-section h2 {
     font-size: 2.8em;
-    margin-bottom: 0.5em;
-    
+    margin-bottom: 0.5em; 
     
 }
 
@@ -191,8 +194,8 @@ main strong {
 }
 
 .hero-link-button {
-    background-color: yellow;
-    color: black;
+    background-color: var(--color-yellow);
+    color: var(--color-black);
     padding: 0.5em 1em;
     text-decoration: none;
     font-weight: bold;
@@ -204,8 +207,8 @@ main strong {
 }
 
 .hero-link-button:hover{
-    background-color: black;
-    color: #fff;
+    background-color: var(--color-black);
+    color: var(--color-white);
 }
 
 .services-details {
@@ -213,7 +216,7 @@ main strong {
     grid-template-columns: 40%  minmax(0, 60%);
     column-gap: 3.8em;
     margin: auto;
-    color: rgb(0,0,0);
+    color: var(--color-black);
     max-width: 100vw;
 }
 
@@ -242,7 +245,7 @@ main strong {
 }
 
 .services-points {
-    background: rgb(228, 228, 228);
+    background: var(--color-light-grey);
     padding: 0.5em 2em;
     border-radius: 5px;
 }
@@ -253,7 +256,7 @@ main strong {
 }
 
 .services-points strong {
-     color: #000;
+    color: var(--color-black);
  }
 
 .handwash-section {
@@ -269,12 +272,12 @@ main strong {
 .handwash-section .grid-container .grid-item {
     padding: 20px;
     text-align: center;
-    background: rgba(228, 228, 228, 0.226);
+    background: var(--color-hero-overlay);
     border-radius: 5px;
 }
 
 .grid-item p {
-    color: white;
+    color: var(--color-white);
 }
 
  @media (max-width: 768px) {

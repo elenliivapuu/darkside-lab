@@ -2,10 +2,15 @@
     <main>
         <div class="container">
             <h2>Admin</h2>
+
+            <!-- Logout button for the admin -->
             <div class="logout-wrapper">
                 <button class="logout-btn" @click="logOut">Log Out</button>
             </div>
+
             <p class="section-title">All bookings:</p>
+
+            <!-- Render each booking in a card -->
             <div class="bookings-list">
                 <div v-for="event in events" :key="event.id" class="booking-card">
                     <div class="booking-field">
@@ -33,6 +38,7 @@
                         <span class="value">{{ event.createdAt }}</span>
                     </div>
 
+                    <!-- Action to delete booking -->
                     <button class="delete-btn" @click="deleteBooking(event.id)">
                         Delete Booking
                     </button>
@@ -41,19 +47,6 @@
         </div>
     </main>
 </template>
-
-<!-- <ul>
-                <li v-for="event in events" :key="event.id" style="line-height: 1.0;">
-                    <p>Date: {{ event.startDate }}</p>
-                    <p>Name: {{ event.name }}</p>
-                    <p>Phone: {{ event.phone }}</p>
-                    <p>Email: {{ event.email }}</p>
-                    <p>Comment: {{ event.comment }}</p>
-                    <p>Registered: {{ event.createdAt }}</p>
-                    <button @click="deleteBooking(event.id)">Delete Booking</button>
-                    <hr>
-                </li>
-            </ul> -->
 
 <script>
 import router from '../router'
@@ -65,6 +58,7 @@ import router from '../router'
             }
 		},
 		methods: {
+            // Load all bookings from the backend
             async loadBookings() {
                 try {
                     const response = await fetch('http://127.0.0.1:5000/api/bookings', {
@@ -80,6 +74,7 @@ import router from '../router'
                 }
             },
 
+            // Delete booking by ID and reload list
             async deleteBooking(eid) {
                 const response = await fetch(`http://127.0.0.1:5000/api/bookings/${eid}`, {
                         method: 'DELETE',
@@ -95,6 +90,7 @@ import router from '../router'
 
                 this.loadBookings();
             },
+            // Logout request + redirect to login
             async logOut() {
                 const res = await fetch(`http://127.0.0.1:5000/api/logout`, {
                     method: 'GET',
@@ -109,6 +105,7 @@ import router from '../router'
                 }
             }
         },
+        // Load bookings on mount
         mounted() {
             this.loadBookings();
         }
@@ -138,13 +135,13 @@ main {
 h2 {
   font-size: 2em;
   text-align: center;
-  color: yellow;
+  color: var(--color-yellow);
   margin-bottom: 1.2em;
 }
 
 .section-title {
   font-size: 1.6em;
-  color: yellow;
+  color: var(--color-yellow);
   margin-bottom: 1.5em;
   text-align: center;
 }
@@ -155,14 +152,15 @@ h2 {
 }
 
 .logout-btn {
-  background-color: red;
-  color: white;
+  background-color: var(--color-light-grey);
+  color: var(--color-dark-grey);
   padding: 0.6em 1em;
   border: none;
   border-radius: 5px;
   font-size: 0.95em;
   cursor: pointer;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 .logout-btn:hover {
@@ -198,15 +196,15 @@ h2 {
 .value {
   width: 65%;
   text-align: right;
-  color: white;
+  color: var(--color-white);
   word-break: break-word;
 }
 
 .delete-btn {
   margin-top: 1.2em;
   width: 100%;
-  background-color: yellow;
-  color: black;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
   font-weight: bold;
   padding: 0.6em;
   border: none;
@@ -217,8 +215,8 @@ h2 {
 }
 
 .delete-btn:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 
 @media (max-width: 600px) {

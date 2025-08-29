@@ -2,6 +2,9 @@
 node_modules/
 node_modules/*
 /dist/
+/backend
+/backend-old/
+
 
 # local env files
 .env.local
@@ -28,4 +31,4 @@ yarn-error.log*
 
 __pycache__/
 .venv*/
-venv*/
+venv*/api/app.db

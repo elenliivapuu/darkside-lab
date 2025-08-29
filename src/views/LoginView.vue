@@ -82,7 +82,7 @@ main {
   font-size: 1.8em;
   margin-bottom: 1em;
   text-align: center;
-  color: yellow;
+  color: var(--color-yellow);
 }
 
 input[type="text"],
@@ -113,8 +113,8 @@ input::placeholder {
 }
 
  button {
-  background-color: yellow;
-  color: black;
+  background-color: var(--color-yellow);
+  color: var(--color-black);
   font-weight: bold;
   padding: 0.6em;
   border: none;
@@ -127,7 +127,7 @@ input::placeholder {
 }
 
 .login-button:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 </style>

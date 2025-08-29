@@ -2,14 +2,15 @@
     <main>
         <div class="container">
             <h2 class="page-title">Galerii</h2>
-
             <section class="main-grid">
+                <!-- Add your images here:  -->
                 <div><img src="../assets/img/hero-img.jpg" alt=""></div>
                 <div><img src="../assets/img/gallery-img1.jpg" alt=""></div>
                 <div><img src="../assets/img/gallery-img2.jpg" alt=""></div>
                 <div><img src="../assets/img/gallery-img3.jpg" alt=""></div>
                 <div><img src="../assets/img/gallery-img4.jpg" alt=""></div>
                 <div><img src="../assets/img/hero-img2.jpg" alt=""></div>
+                <!-- <div><img src="" alt=""></div> -->
             </section>
         </div>
 

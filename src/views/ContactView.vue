@@ -4,6 +4,7 @@
             <div class="container">
                 <h2>Võta meiega ühendust</h2>
                 <div class="contact-container">
+                    <!-- Contact form submitted via Formspree -->
                     <div class="contact-form">
                         <form action="https://formspree.io/f/mkggpdlg" method="post">
                             <label for="name">Nimi:</label>
@@ -19,13 +20,13 @@
                         </form>
                     </div>
 
+                    <!-- Embedded Google Map -->
                     <div class="contact-map">
-                        <!-- Replace the src URL with your own Google Maps Embed API URL -->
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2114.387776044056!2d24.689541515889403!3d59.365829881668385!2m3!1f0!2f0!3f0!3m2
                         !1i1024!2i768!4f13.1!3m3!1m2!1s0x4692e8a184d890ab%3A0x28a1e2e8bde1efc0!2sLepatriinu%20tee%208%2C%207646%
                         2C%20J%C3%A4lgim%C3%A4e%2C%20Harju%20maakond%2C%2076470%20Harju%20maakond%2C%20Estonia!5e0!3m2!1sen!2sus!4v1609458996801!5m2!1sen!2sus"
-                            width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""
+                            width="100%" height="450" frameborder="0" style="border:0;"
                             aria-hidden="false" tabindex="0">
                         </iframe>
                     </div>
@@ -38,15 +39,15 @@
 <style scoped>
 .contact-section {
     padding: 40px 20px;
-    background-color: #222;
-    color: white;
+    background-color: var(--color-dark-grey);
+    color: var(--color-white);
     text-align: center;
 }
 
 .contact-section h2 {
     font-size: 2.5em;
     margin-bottom: 30px;
-    color: yellow;
+    color: var(--color-yellow)
 }
 
 .contact-container {
@@ -75,13 +76,13 @@
     border: none;
     border-radius: 5px;
     font-size: 1em;
-    color: #000;
+    color: var(--color-dark-grey);
 }
 
 .contact-form button {
     padding: 15px;
-    background-color: yellow;
-    color: #000;
+    background-color: var(--color-yellow);
+    color: var(--color-black);
     border: none;
     border-radius: 5px;
     font-size: 1.2em;
@@ -90,8 +91,8 @@
 }
 
 .contact-form button:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-black);
+    color: var(--color-white);
 }
 
 .contact-map {
@@ -102,7 +103,6 @@
 .contact-map iframe {
     border-radius: 5px;
 }
-
 
 @media (max-width: 768px) {
     .contact-container {

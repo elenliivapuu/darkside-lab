@@ -1,0 +1,56 @@
+
+.theme-gcal .cv-day-number {
+    margin: 0 auto; /*0 auto */
+    padding: 0.5em 0.5em
+}
+.theme-gcal .cv-day.today .cv-day-number{
+    background-color: gray;
+}
+#calendar .previousPeriod:hover, #calendar .nextPeriod:hover{
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+#calendar .currentPeriod:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+#calendar .currentPeriod:active {
+    background-color: gray;
+    transition: background-color 0.5s ease;
+}
+#calendar .cv-day {
+    cursor: pointer; /* Show pointer cursor on hover */
+    padding: 0.5em;
+    transition: background-color 0.3s ease;
+}
+
+#calendar .cv-day-number {
+    background-color: none;
+}
+
+#calendar .cv-day:hover {
+    background-color: #f0f0f0; /* Light gray background on hover */
+}
+
+#calendar .clicked-day {
+    background-color: yellow !important; 
+    color: #333 !important; 
+}
+
+.calendar-parent {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-white);
+    height: 400px;
+    border-radius: 4px;
+}
+
+.cv-wrapper {
+    border-radius: 4px;
+}

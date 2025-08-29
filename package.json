@@ -2,11 +2,10 @@
   "name": "darkside-lab",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "server": "node backend/server.js",
+    "server": "source .venv/bin/activate ; cd api ; python -m flask run ; cd ..",
     "preview": "vite preview",
     "db": "mongod --dbpath /Users/elenliivapuu/data/db"
   },

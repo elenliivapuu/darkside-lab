@@ -1,3 +1,4 @@
+<!-- Template section: layout for site footer -->
 <template>
   <footer>
         <div class="container">
@@ -5,7 +6,7 @@
             <hr>
             <h4><strong>Lisainfo</strong></h4>
             <p>Asukoht: Lepatriinu tee 8, Jälgimäe, Estonia</p>
-            <p>Telefon: 5357 7076</p>
+            <p>Telefon: +372 5357 7076</p>
             <p>Facebook: <a href="https://www.facebook.com/profile.php?id=100091384596970"
                     target="_blank">Darkside-Lab</a></p>
         </div>
@@ -14,14 +15,14 @@
 
 <style scoped>
 footer {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-black);
+    color: var(--color-white);
     text-align: top;
     padding: 1em 0em;
 }
 
 footer h2 {
-    color: yellow;
+    color: var(--color-yellow);
     text-align: center;
     padding: 20px;
 }
@@ -32,7 +33,7 @@ footer p, footer h4 {
 }
 
 footer a {
-    color: yellow;
+    color: var(--color-yellow);
     text-decoration: none;
 }
 
