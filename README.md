@@ -1,27 +1,55 @@
-# Darkside-Lab
-A detailing service platform using Node.js backend and Vue.js frontend.
+# Darkside-Lab — Car Detailing Booking Website
+A responsive full-stack web application for a professional car detailing company in Estonia. The site allows users to browse services, view photos, contact the business, and book an appointment through a calendar-based form.
 
-In this project server logic is in the `backend` folder and the user interface in implemented in the `src` folder.
+---
+
+## 🔧 Stack
+
+**Frontend**: Vue 3, Vite, HTML5, CSS  
+**Backend**: Flask (Python), Flask-Login  
+
+---
+
+## In this project:
+- The **frontend** lives in the `src/` directory.
+- The **Flask backend** is in the `api/` folder.
+
+---
+
+## 📁 Features
+
+- 🧼 **Service Overview** – Information about car handwashing and related services
+- 📸 **Image Gallery** – Embedded Swiper-based image showcase
+- 📆 **Booking Calendar** – Select date/time, enter contact info, submit booking
+- 🔐 **Admin Panel** – View and delete bookings, log out securely
+- 📍 **Contact Page** – Integrated Google Maps + email form via Formspree
+
+---
 
 ## Installing
 
-Install MongoDB locally and set path to your `/data/db` location in package.json.
-
 Install packages with `npm install`.
+
+## Backend
+
+`cd api`
+
+`python3 -m venv venv`
+
+`source venv/bin/activate` 
+
+`pip install -r requirements.txt` 
+
+`python -m flask db upgrade` 
 
 ## Running
 
-TODO update + intructions + overview + setup guide + future cosndierations
-
-Start the MongoDB database:
-`npm run db`
-
-Build the Vue.js frontend:
-`npm run build`
+Run the Vue.js frontend:
+`npm run dev`
 
 Start the Node.js server:
 `npm run server`
 
-## Admin view
+## Login, register and Admin views
 
 To access the unfinished admin page, navigate to `/admin`, probably have to `/login` first or create admin account under `/register`
