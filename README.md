@@ -1,5 +1,4 @@
----
----
+
 # Darkside-Lab — Car Detailing Booking Website
 A responsive full-stack web application for a professional car detailing company in Estonia. The site allows users to browse services, view photos, contact the business, and book an appointment through a calendar-based form.
 
