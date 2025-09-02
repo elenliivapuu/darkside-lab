@@ -1,2 +1,2 @@
-export const baseUrl = 'http://127.0.0.1:5000';
-export const bookingHourSlots = [8, 10, 12, 14, 16];
+export const baseUrl = 'http://127.0.0.1:5000'; //Change this to the real URL
+export const bookingHourSlots = [8, 10, 12, 14, 16]; //Change this to the actual timeslots that can be available in the calendar in the booking view

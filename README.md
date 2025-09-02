@@ -1,3 +1,7 @@
+
+
+
+
 # Darkside-Lab — Car Detailing Booking Website
 A responsive full-stack web application for a professional car detailing company in Estonia. The site allows users to browse services, view photos, contact the business, and book an appointment through a calendar-based form.
 
@@ -11,8 +15,9 @@ A responsive full-stack web application for a professional car detailing company
 ---
 
 ## 🗂️Structure:
-- The **frontend** lives in the `src/` directory.
+- The **frontend** is in the `src/` directory.
 - The **Flask backend** is in the `api/` folder.
+- Configurable values (`baseUrl`, `bookingHourSlots`) are in `/src/config.js`
 
 ---
 
@@ -53,19 +58,31 @@ Start the Flask server:
 ---
 
 ## Login, register and Admin views
-
-To access Admin page and manage bookings navigate to `/admin`, probably have to `/login` first or create admin account under `/register`
+ 
+1. Create an admin account at `/register`
+2. Log in at `/login` using your admin account
+3. Navigate to `/admin` to manage bookings
 
 
 ## 📨 Contact Form
 
 To enable the contact form:
 
-Sign up at https://formspree.io
+1. Sign up at https://formspree.io
+2. Replace the default form URL in ContactView.vue with your own Formspree endpoint.
 
-Replace the default form URL in ContactView.vue with your own Formspree endpoint.
 
-## Notes:
+## Updating the Image Gallery
 
-You can change the base API URL in the `.env` file.  
-Booked times are stored in a `bookedHours` variable in `BookView.vue`—you can update it as needed.
+To add more images to Gallery: 
+
+1. Open `/src/views/GalleryView.vue`
+2. Add your images to the `main-grid` section
+
+
+## Configuration Notes:
+
+You can change the base API URL in the `.env` file.
+Change `baseUrl` variable in `config.js` to your real URL.
+
+To edit available booking times `bookingHourSlots` in `/src/config.js` file, update with the time slots you want to offer for booking.
