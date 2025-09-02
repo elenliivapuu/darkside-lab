@@ -1,7 +1,5 @@
-
-
-
-
+---
+---
 # Darkside-Lab — Car Detailing Booking Website
 A responsive full-stack web application for a professional car detailing company in Estonia. The site allows users to browse services, view photos, contact the business, and book an appointment through a calendar-based form.
 
@@ -33,19 +31,17 @@ A responsive full-stack web application for a professional car detailing company
 
 ## Installing
 
-Install packages with `npm install`.
+Install packages with `npm install`
 
 ## Backend
 
-`cd api`
-
-`python3 -m venv venv`
-
-`source venv/bin/activate` 
-
-`pip install -r requirements.txt` 
-
-`python -m flask db upgrade` 
+```bash
+cd api
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python -m flask db upgrade
+```
 
 ## Running
 
@@ -64,7 +60,7 @@ Start the Flask server:
 3. Navigate to `/admin` to manage bookings
 
 
-## 📨 Contact Form
+##  Contact Form
 
 To enable the contact form:
 
@@ -86,3 +82,12 @@ You can change the base API URL in the `.env` file.
 Change `baseUrl` variable in `config.js` to your real URL.
 
 To edit available booking times `bookingHourSlots` in `/src/config.js` file, update with the time slots you want to offer for booking.
+
+
+Create a .env file inside /api with the following contents:
+```bash
+FLASK_APP=start.py
+FLASK_ENV=development
+```
+
+Add secret keys there, if needed. The file is not tracked by git. Change `FLASK_ENV` to `production` when deploying to server.
